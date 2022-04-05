@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 import { UserEntity } from './users/users.entity';
+import { WorkerModule } from './worker/worker.module';
 import * as Joi from 'joi';
 
 const typeOrmModuleOptions = {
@@ -48,6 +49,7 @@ const typeOrmModuleOptions = {
     }),
     TypeOrmModule.forRootAsync(typeOrmModuleOptions),
     UsersModule,
+    WorkerModule,
   ],
 })
 export class AppModule { }
