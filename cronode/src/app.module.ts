@@ -4,8 +4,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 import { UserEntity } from './users/users.entity';
-import { WorkerModule } from './worker/worker.module';
 import * as Joi from 'joi';
+import { ScheduleModule } from '@nestjs/schedule';
+import { JobsModule } from './jobs/jobs.module';
 
 const typeOrmModuleOptions = {
   useFactory: async (
@@ -47,9 +48,11 @@ const typeOrmModuleOptions = {
         DB_NAME: Joi.string().required(),
       }),
     }),
-    TypeOrmModule.forRootAsync(typeOrmModuleOptions),
-    UsersModule,
-    WorkerModule,
+    ScheduleModule.forRoot(),
+    JobsModule,
+    // TypeOrmModule.forRootAsync(typeOrmModuleOptions),
+    // UsersModule,
+
   ],
 })
 export class AppModule { }
