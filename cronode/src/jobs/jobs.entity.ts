@@ -1,14 +1,12 @@
-import { IsBoolean, IsEmail, IsNotEmpty, IsString, IsUUID } from 'class-validator'
+import { IsNotEmpty, IsString } from 'class-validator'
 import { CommonEntity } from '../common/entities/common.entity'
 import { Column, Entity, Index } from 'typeorm'
-import { Exclude } from 'class-transformer'
+import { TaskEntity } from './tasks.entity'
 
 type JobType = 'repeat' | 'time'
 
 @Index('email', ['email'], { unique: true })
-@Entity({
-    name: 'JOB',
-}) // USER : 테이블 명
+@Entity({ name: 'JOB' })
 export class JobEntity extends CommonEntity {
 
     @IsString()
@@ -16,9 +14,9 @@ export class JobEntity extends CommonEntity {
     @Column({ type: 'varchar', nullable: false })
     name: string
 
+    @IsString()
+    @IsNotEmpty()
     type: JobType
 
-    @IsBoolean()
-    @Column({ type: 'boolean', default: false })
-    isAdmin: boolean
+    tasks: Array<TaskEntity>
 }
