@@ -7,6 +7,7 @@ import { UserEntity } from './users/users.entity';
 import * as Joi from 'joi';
 import { ScheduleModule } from '@nestjs/schedule';
 import { JobsModule } from './jobs/jobs.module';
+import { SchedulesModule } from './schedules/schedules.module';
 
 const typeOrmModuleOptions = {
   useFactory: async (
@@ -50,6 +51,7 @@ const typeOrmModuleOptions = {
     }),
     ScheduleModule.forRoot(),
     JobsModule,
+    SchedulesModule,
     // TypeOrmModule.forRootAsync(typeOrmModuleOptions),
     // UsersModule,
 

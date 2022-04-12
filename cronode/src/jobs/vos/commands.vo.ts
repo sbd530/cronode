@@ -9,12 +9,37 @@ export const Http = {
 
 export type PayloadFormat = 'json' | 'xml' | 'text' | 'binary' | 'argument'
 
-//TODO: 전략 패턴으로 리팩터링
 export class Command {
 
+    commandStrategy: CommandStrategy
+
+    payload?: Payload
+
+    constructor(commandStrategy: CommandStrategy) {
+        this.commandStrategy = commandStrategy
+    }
+
+    async init(): Promise<VoidFunction> {
+
+        return new Promise((resolve, reject) => {
+            try {
+                this.commandStrategy.init()
+            } catch (e) {
+                reject(e)
+            }
+
+        })
+    }
+}
+
+export interface CommandStrategy {
     type: CommandType
     payload?: Payload
+
+    init(): Promise<Object>
 }
+
+
 
 export class Payload {
     format: PayloadFormat
