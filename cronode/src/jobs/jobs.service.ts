@@ -1,3 +1,4 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression, SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
@@ -6,7 +7,8 @@ import { CronJob } from 'cron';
 export class JobsService {
     private readonly logger = new Logger(JobsService.name)
 
-    constructor(private schedulerRegistry: SchedulerRegistry) { }
+    constructor(private readonly schedulerRegistry: SchedulerRegistry,
+        private readonly httpService: HttpService) { }
 
     // @Cron('* * * * * *')
     // everySec() {

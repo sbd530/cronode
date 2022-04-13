@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsString } from 'class-validator'
 import { CommonEntity } from '../common/entities/common.entity'
 import { Column, Entity, Index } from 'typeorm'
-import { TaskEntity } from './tasks.entity'
+import { TaskEntity } from './domain/tasks.entity'
 
 type JobType = 'repeat' | 'time'
 

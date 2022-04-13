@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator'
-import { CommonEntity } from '../common/entities/common.entity'
+import { CommonEntity } from '../../common/entities/common.entity'
 import { Column, Entity, Index } from 'typeorm'
 import { Command } from './vos/commands.vo'
 
