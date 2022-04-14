@@ -11,6 +11,6 @@ export class TaskEntity extends CommonEntity {
     @Column({ type: 'varchar', nullable: false })
     command: Command
 
-    @IsString()
-    argument: string
+    @IsString({ groups: ['Pending', 'Error', 'DoneWithFailure', 'DoneWithSuccess'] })
+    status: string
 }

@@ -1,26 +1,16 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
-import { Cron, CronExpression, SchedulerRegistry } from '@nestjs/schedule';
+import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
+import { HttpCommand } from './domain/vos/commands.vo';
 
 @Injectable()
 export class JobsService {
     private readonly logger = new Logger(JobsService.name)
 
-    constructor(private readonly schedulerRegistry: SchedulerRegistry,
+    constructor(
+        private readonly schedulerRegistry: SchedulerRegistry,
         private readonly httpService: HttpService) { }
-
-    // @Cron('* * * * * *')
-    // everySec() {
-    //     this.logger.log('every sec')
-    // }
-
-    // @Cron(CronExpression.EVERY_10_SECONDS)
-    // logEveryTenSeconds() {
-    //     this.logger.log('10 secs')
-    // }
-
-
 
     addCronJob(name: string, seconds: string) {
         const job = new CronJob(`${seconds} * * * * *`, () => {
@@ -45,5 +35,10 @@ export class JobsService {
             this.logger.log(`job: ${key} -> next: ${next}`);
         });
     }
+
+    // async doHttpCommand(command: HttpCommand) {
+    //     return await this.httpService.get('');
+
+    // }
 
 }
