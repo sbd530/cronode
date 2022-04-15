@@ -18,5 +18,5 @@ export class JobEntity extends CommonEntity {
     @IsNotEmpty()
     type: JobType
 
-    tasks: Array<TaskEntity>
+    tasks: Set<TaskEntity>
 }

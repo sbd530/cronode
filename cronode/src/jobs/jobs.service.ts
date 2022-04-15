@@ -2,7 +2,6 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
-import { HttpCommand } from './domain/vos/commands.vo';
 
 @Injectable()
 export class JobsService {
@@ -35,6 +34,8 @@ export class JobsService {
             this.logger.log(`job: ${key} -> next: ${next}`);
         });
     }
+
+
 
     // async doHttpCommand(command: HttpCommand) {
     //     return await this.httpService.get('');
